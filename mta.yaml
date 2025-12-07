@@ -1,0 +1,31 @@
+_schema-version: '3.3'
+ID: cap-provider
+version: 1.0.0
+description: CAP Provider API
+
+parameters:
+  enable-parallel-deployments: true
+
+modules:
+  - name: cap-provider-srv
+    type: nodejs
+    path: .
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 256M
+      disk-quota: 512M
+    build-parameters:
+      builder: npm
+    requires:
+      - name: cap-provider-db
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+
+resources:
+  - name: cap-provider-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
