@@ -9,7 +9,7 @@ parameters:
 modules:
   - name: cap-provider-srv
     type: nodejs
-    path: .
+    path: gen/srv
     parameters:
       buildpack: nodejs_buildpack
       memory: 256M
@@ -18,10 +18,19 @@ modules:
       builder: npm
     requires:
       - name: cap-provider-db
+      - name: cap-provider-auth
     provides:
       - name: srv-api
         properties:
           srv-url: ${default-url}
+
+  - name: cap-provider-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: cap-provider-db
 
 resources:
   - name: cap-provider-db
@@ -29,3 +38,19 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+  - name: cap-provider-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: cap-provider-${org}-${space}
+        tenant-mode: dedicated
+
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production

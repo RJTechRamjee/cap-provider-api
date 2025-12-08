@@ -1,0 +1,56 @@
+### Variables
+@baseUrl = http://localhost:4004/odata/v4
+@contentType = application/json
+
+### Get all Products
+GET {{baseUrl}}/catalog/Products
+
+### Get a specific Product (Laptop Pro)
+GET {{baseUrl}}/catalog/Products(550e8400-e29b-41d4-a716-446655440001)
+
+### Get a specific Product (Wireless Mouse)
+GET {{baseUrl}}/catalog/Products(550e8400-e29b-41d4-a716-446655440002)
+
+### Create a new Product
+POST {{baseUrl}}/catalog/Products
+Content-Type: {{contentType}}
+
+{
+ // "ID": "550e8400-e29b-41d4-a716-446655440099",
+  "name": "Webcam HD",
+  "description": "1080p HD webcam",
+  "price": 79.99,
+  "stock": 30,
+  "category": "Electronics"
+}
+
+### Update a Product - PUT (full replacement)
+PUT {{baseUrl}}/catalog/Products(550e8400-e29b-41d4-a716-446655440001)
+Content-Type: {{contentType}}
+
+{
+  "name": "Laptop Pro Max",
+  "description": "Ultra high-performance laptop",
+  "price": 1599.99,
+  "stock": 10,
+  "category": "Electronics"
+}
+
+### Update a Product - PATCH (partial update - price only)
+PATCH {{baseUrl}}/catalog/Products(550e8400-e29b-41d4-a716-446655440002)
+Content-Type: {{contentType}}
+
+{
+  "price": 24.99
+}
+
+### Update a Product - PATCH (stock update)
+PATCH {{baseUrl}}/catalog/Products(550e8400-e29b-41d4-a716-446655440004)
+Content-Type: {{contentType}}
+
+{
+  "stock": 30
+}
+
+### Delete a Product
+DELETE {{baseUrl}}/catalog/Products(550e8400-e29b-41d4-a716-446655440005)

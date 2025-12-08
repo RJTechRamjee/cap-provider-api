@@ -4,11 +4,13 @@
   "description": "CAP Provider API - exposes Products service",
   "private": true,
   "dependencies": {
-    "@sap/cds": "^7",
-    "express": "^4"
+    "@cap-js/hana": "^2",
+    "@sap/cds": "^9",
+    "express": "^4",
+    "@sap/xssec": "^4"
   },
   "devDependencies": {
-    "@sap/cds-dk": "^7"
+    "@sap/cds-dk": "^9"
   },
   "scripts": {
     "start": "cds-serve"
@@ -17,7 +19,13 @@
     "requires": {
       "db": {
         "kind": "sql"
+      },
+      "[production]": {
+        "auth": "xsuaa"
       }
+    },
+    "build": {
+      "target": "gen"
     }
   }
 }
