@@ -19,6 +19,7 @@ modules:
     requires:
       - name: cap-provider-db
       - name: cap-provider-auth
+      - name: cap-provider-destination
     provides:
       - name: srv-api
         properties:
@@ -47,6 +48,11 @@ resources:
       config:
         xsappname: cap-provider-${org}-${space}
         tenant-mode: dedicated
+  - name: cap-provider-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
 
 build-parameters:
   before-all:
