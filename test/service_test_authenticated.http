@@ -1,10 +1,10 @@
 ### XSUAA OAuth Configuration
-@tokenUrl = https://d78a3142trial.authentication.us10.hana.ondemand.com/oauth/token
-@clientId = sb-cap-provider-d78a3142trial-dev!t520749
-@clientSecret = bcdb394f-10f2-480b-b301-bec46ace3945$4dr3YIjOgLGou_vf2BySLIs5idxSfI7SkswKFk7gRMI=
+@tokenUrl = https://3b98505etrial.authentication.us10.hana.ondemand.com/oauth/token
+@clientId = sb-cap-provider-3b98505etrial-dev!t571218
+@clientSecret = b05f8485-43c9-4c7c-bc78-93ff7103531c$EXmfn2c1lLutywofsyTffU0pCdW5V_ZC0LOz0gtj5NQ=
 
 ### Service Configuration
-@baseUrl = https://d78a3142trial-dev-cap-provider-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/catalog
+@baseUrl = https://3b98505etrial-dev-cap-provider-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/catalog
 @contentType = application/json
 
 ### Step 1: Get OAuth Access Token
